@@ -1,42 +1,107 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" >
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Staffs List</title>
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button2 {
+            background-color: white;
+            color: black;
+            border: 2px solid #f44336;
+        }
+
+        .button2:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        * {
+            font-family: monospace;
+        }
+    </style>
 </head>
-<body>
-<center>
-<a href="/create-staffs">Create new Staffs</a>
-<h1>Staffs</h1>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Adddress</th>
-        <th>Birthday</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Salary</th>
-        <th>DepartId</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <th:block th:each="Staffs : ${staffs}">
+<body style="padding-top: 30px">
+    <h1 style="color: #4CAF50; text-align: center;">Staffs</h1>
+    <table border="1" id="customers">
         <tr>
-            <td th:text="${Staffs.id}"></td>
-            <td th:text="${Staffs.name}"></td>
-            <td th:text="${Staffs.adress}"></td>
-            <td th:text="${Staffs.Birthday}"></td>
-            <td th:text="${Staffs.Email}"></td>
-            <td th:text="${Staffs.Phone}"></td>
-            <td th:text="${Staffs.salary}"></td>
-            <td th:text="${Staffs.departs.name}"></td>
-            <td><a th:href="@{/edit-staffs/__${Staffs.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-staffs/__${Staffs.id}__ }">Delete</a></td>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Adddress</th>
+            <th>Birthday</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Salary</th>
+<!--            <th>Depart</th>-->
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
-    </th:block>
-</table>
-<buttom > </buttom>
-</center>
+        <th:block th:each="Staffs : ${staffs}">
+            <tr>
+                <td th:text="${Staffs.id}"></td>
+                <td th:text="${Staffs.name}"></td>
+                <td th:text="${Staffs.adress}"></td>
+                <td th:text="${Staffs.Birthday}"></td>
+                <td th:text="${Staffs.Email}"></td>
+                <td th:text="${Staffs.Phone}"></td>
+                <td th:text="${Staffs.salary}"></td>
+<!--                <td th:text="${Staffs.departs.name}"></td>-->
+                <td><a class="button button1"  th:href="@{/edit-staffs/__${Staffs.id}__ }">Edit</a></td>
+                <td><a class="button button2"  th:href="@{/delete-staffs/__${Staffs.id}__ }">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+    <a href="/create-staffs" class="button button1" >Create staff</a>
 </body>
 </html>

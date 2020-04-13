@@ -48,7 +48,7 @@ public class StaffsController {
         staffsService.save(staffs);
         ModelAndView modelAndView = new ModelAndView("/staffs/create");
         modelAndView.addObject("staffs", new Staffs());
-        modelAndView.addObject("message", "New staff created successfully");
+        modelAndView.addObject("message", "New staff created successfully!");
         return modelAndView;
     }
     @GetMapping("/edit-staffs/{id}")
@@ -70,7 +70,7 @@ public class StaffsController {
         staffsService.save(staffs);
         ModelAndView modelAndView = new ModelAndView("/staffs/edit");
         modelAndView.addObject("staffs", staffs);
-        modelAndView.addObject("message", "staffs updated successfully");
+        modelAndView.addObject("message", "Staff updated successfully!");
         return modelAndView;
     }
     @GetMapping("/delete-staffs/{id}")

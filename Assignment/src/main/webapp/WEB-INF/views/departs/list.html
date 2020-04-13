@@ -2,26 +2,94 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Departs List</title>
+    <style>
+        #customers {
+            font-size: 15px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button2 {
+            background-color: white;
+            color: black;
+            border: 2px solid #f44336;
+        }
+
+        .button2:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        * {
+            font-family: monospace;
+        }
+    </style>
 </head>
-<body>
-<center>
-<a href="/create-departs">Create new depart</a>
-<h1>Depart List</h1>
-<table border="1">
-    <tr>
-        <th>Depart Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <th:block th:each="depart : ${departs}">
+<body style="padding-top: 30px">
+    <h1 style="color: #4CAF50; text-align: center;">Departs</h1>
+    <table border="1" id="customers">
         <tr>
-            <td><a th:href="@{/view-departs/__${depart.id}__}" th:text="${depart.name}"></a></td>
-            <td><a th:href="@{/edit-departs/__${depart.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-departs/__${depart.id}__ }">Delete</a></td>
+            <th>Depart ID</th>
+            <th>Depart Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
-    </th:block>
-</table>
-</center>
+        <th:block th:each="depart : ${departs}">
+            <tr>
+                <td th:text="${depart.id}"></td>
+                <td th:text="${depart.name}"></td>
+                <td><a class="button button1" th:href="@{/edit-departs/__${depart.id}__ }">Edit</a></td>
+                <td><a class="button button2" th:href="@{/delete-departs/__${depart.id}__ }">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+    <a href="/create-departs" class="button button1">Create depart</a>
 </body>
 </html>

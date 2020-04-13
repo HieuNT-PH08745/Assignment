@@ -2,59 +2,237 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Staff</title>
+    <style>
+        .form__group {
+            position: relative;
+            padding: 15px 0 0;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .form__field {
+            font-family: inherit;
+            width: 100%;
+            border: 0;
+            border-bottom: 2px solid #9b9b9b;
+            outline: 0;
+            font-size: 1.3rem;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+
+        .form__field::placeholder {
+            color: transparent;
+        }
+
+        .form__field:placeholder-shown ~ .form__label {
+            font-size: 1.3rem;
+            cursor: text;
+            top: 20px;
+        }
+
+        .form__label {
+            position: absolute;
+            top: 0;
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: #9b9b9b;
+        }
+
+        .form__field:focus {
+            padding-bottom: 6px;
+            font-weight: 700;
+            border-width: 3px;
+            border-image: linear-gradient(to right, #11998e, #38ef7d);
+            border-image-slice: 1;
+        }
+
+        .form__field:focus ~ .form__label {
+            position: absolute;
+            top: 0;
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: #11998e;
+            font-weight: 700;
+        }
+
+        /* reset input */
+        .form__field:required, .form__field:invalid {
+            box-shadow: none;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .edit-form {
+            width: 400px;
+            background: #f1f1f1;
+            height: 800px;
+            padding: 80px 40px;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .edit-form h1 {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+
+        .text {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #00AA00;
+        }
+
+        .custom-select {
+            font-family: inherit;
+            width: 100%;
+            border: 0;
+            border-bottom: 2px solid #9b9b9b;
+            outline: 0;
+            font-size: 1.3rem;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+    </style>
 </head>
 <body>
 <center>
-<h1>Edit Staffs</h1>
-<p>
-    <a href="/staffs">Staffs list</a>
-</p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
-<form th:action="@{/edit-staffs}" th:object="${staffs}" method="post">
-    <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
-        <tr>
-            <td> Name:</td>
-            <td><input type="text" th:field="*{name}"/></td>
-        </tr>
-        <tr>
-            <td>Address :</td>
-            <td><input type="text" th:field="*{adress}"/></td>
-        </tr>
-        <tr>
-            <td>Birthday :</td>
-            <td><input type="text" th:field="*{Birthday}"/></td>
-        </tr>
-        <tr>
-            <td>Email :</td>
-            <td><input type="text" th:field="*{Email}"/></td>
-        </tr>
-        <tr>
-            <td>Phone :</td>
-            <td><input type="text" th:field="*{Phone}"/></td>
-        </tr>
-        <tr>
-            <td>Salary :</td>
-            <td><input type="text" th:field="*{salary}"/></td>
-        </tr>
-        <tr>
-            <td>Notes:</td>
-            <td><textarea type="text" th:field="*{Notes}"> </textarea></td>
-
-        </tr>
-<!--        <tr>-->
-<!--            <td>DepartId:</td>-->
-<!--            <td><input type="text" th:field="*{DepartId}"/></td>-->
-<!--        </tr>-->
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update Staffs"></td>
-        </tr>
-    </table>
-</form>
+    <div class="edit-form">
+        <h1>Edit Staffs</h1>
+        <th:block th:if="${message}">
+            <strong><i><p class="text" th:text="${message}"></p></i></strong>
+        </th:block>
+        <form th:action="@{/edit-staffs}" th:object="${staffs}" method="post">
+            <input th:type="hidden" name="id" th:field="*{id}">
+            <table>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <input th:field="*{name}" type="text" class="form__field" placeholder="Name" name="name"
+                                   id='name' required/>
+                            <label for="name" class="form__label">Name</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <input th:field="*{adress}" type="text" class="form__field" placeholder="Address"
+                                   name="address"
+                                   id='address' required/>
+                            <label for="address" class="form__label">Address</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <input th:field="*{Birthday}" type="text" class="form__field" placeholder="Birthday"
+                                   name="birthday"
+                                   id='birthday' required/>
+                            <label for="birthday" class="form__label">Birthday</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <input th:field="*{Email}" type="text" class="form__field" placeholder="Email" name="email"
+                                   id='email' required/>
+                            <label for="email" class="form__label">Email</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <input th:field="*{Phone}" type="text" class="form__field" placeholder="Phone" name="phone"
+                                   id='phone' required/>
+                            <label for="phone" class="form__label">Phone</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <input th:field="*{salary}" type="text" class="form__field" placeholder="Salary"
+                                   name="salary"
+                                   id='salary' required/>
+                            <label for="salary" class="form__label">Salary</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form__group field">
+                            <textarea th:field="*{Notes}" type="text" class="form__field" placeholder="Notes"
+                                      name="notes"
+                                      id='notes' required></textarea>
+                            <label for="notes" class="form__label">Notes</label>
+                        </div>
+                        <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="custom-select" th:field="*{departs}">
+                            <option th:each="p : ${departs}" th:value="${p.id}" th:text="${p.name}"></option>
+                        </select>
+                        <br/><br/><br/><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="button button1" type="submit" value="Update Staffs">
+                        <a class="button button1" href="/staffs">Staffs list</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </center>
 </body>
 </html>

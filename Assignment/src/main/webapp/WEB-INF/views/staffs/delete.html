@@ -2,28 +2,71 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete Staff</title>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button2 {
+            background-color: white;
+            color: black;
+            border: 2px solid #f44336;
+        }
+
+        .button2:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        * {
+            font-family: monospace;
+        }
+
+        #customers {
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 <center>
-<h1>Delete Staffs</h1>
-<h2>Are you sure?</h2>
-<p>
-    <a href="/staffs">Staffs list</a>
-</p>
-<form th:action="@{/delete-staffs}" th:object="${staffs}" method="post">
-    <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td th:text="${staffs.get().name}"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Delete Staffs"></td>
-        </tr>
-    </table>
-</form>
+
+    <form th:action="@{/delete-staffs}" th:object="${staffs}" method="post">
+        <h1>Delete Staffs</h1>
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table id="customers">
+            <tr>
+                <td>Do you want to delete staff: <p th:text="${staffs.get().name}"></p></td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="button button2" type="submit" value="Delete Staffs">
+                    <a class="button button1" href="/staffs">Staffs list</a>
+                </td>
+            </tr>
+        </table>
+    </form>
 </center>
 </body>
 </html>

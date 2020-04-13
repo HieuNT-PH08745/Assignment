@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GreetingController {
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String index()
     {
         return "index";
@@ -22,5 +22,10 @@ public class GreetingController {
         model.addAttribute("message", "Dang nhap thanh cong");
         ModelAndView modelAndView = new ModelAndView("home", "users", users);
         return modelAndView;
+    }
+    @GetMapping("/about")
+    public String about()
+    {
+        return "about";
     }
 }

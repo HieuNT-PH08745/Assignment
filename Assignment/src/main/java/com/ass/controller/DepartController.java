@@ -43,7 +43,7 @@ public class DepartController {
         departService.save(departs);
         ModelAndView modelAndView = new ModelAndView("/departs/create");
         modelAndView.addObject("departs", new Depart());
-        modelAndView.addObject("message", "New Depart created successfully");
+        modelAndView.addObject("message", "New depart created successfully!");
         return modelAndView;
     }
 
@@ -66,7 +66,7 @@ public class DepartController {
         departService.save(depart);
         ModelAndView modelAndView = new ModelAndView("/departs/edit");
         modelAndView.addObject("departs", depart);
-        modelAndView.addObject("message", "departs updated successfully");
+        modelAndView.addObject("message", "Departs updated successfully!");
         return modelAndView;
     }
     @GetMapping("/delete-departs/{id}")
